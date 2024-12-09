@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello React</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+   const numbers =  [3, 4, 7];
+
+   //Créez deux composants :
+   //
+   // Le premier est un conteneur qui structure l'affichage. (Wrapper)
+   // Le deuxième composant affichera les nombres suivants élevés à la puissance 3. (Number)
+
+    // Composant Number
+    function Number({ value }) {
+      return <div>{value} ^ 3 = {value ** 3}</div>;
+    }
+   // Composant Number avec fonction fléchée
+
+      /*  const Number = ({ value }) => {
+      return <div> {value} ^ 3 = {value ** 3}</div>;
+    }; */
+    // Composant Wrapper
+    function Wrapper({ numbers }) {
+      return (
+        <div>
+          {numbers.map((num, index) => (
+            <Number key={index} value={num} />
+          ))}
+        </div>
+      );
+    }
+    // Composant Wrapper avec fonction fléchée
+    /* const Wrapper = ({ numbers }) => {
+      return (
+        <div>
+          {numbers.map((num, index) => (
+            <Number key={index} value={num} />
+          ))}
+        </div>
+      );
+    }; */
+   ReactDOM.createRoot(
+    document.querySelector("#root")
+   )
+    .render(
+     <div>
+      <Wrapper numbers={numbers} />
+     </div>
+     )
+
+  </script>
+</body>
+</html>
